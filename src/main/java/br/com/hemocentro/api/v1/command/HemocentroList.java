@@ -7,9 +7,11 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import br.com.hemocentro.api.v1.model.Hemocentro;
 import br.com.hemocentro.api.v1.repository.HemocentroRepository;
@@ -23,7 +25,19 @@ public class HemocentroList {
 
 	@Transactional(readOnly = true)
 	public Iterable<Hemocentro> list(ListRequest listRequest) {
-		return hemocentroRepository.findAll(new HemocentroFilterSpecification(listRequest));
+		Assert.notNull(listRequest);
+
+		PageRequest pageRequest = pageRequest(listRequest);
+
+		if (listRequest.isEmptyFilters()) {
+			return hemocentroRepository.findAll(pageRequest);
+		}
+
+		return hemocentroRepository.findAll(new HemocentroFilterSpecification(listRequest), pageRequest);
+	}
+	
+	private PageRequest pageRequest(ListRequest listRequest) {
+		return new PageRequest(listRequest.getActualPage(), listRequest.getPageSize());
 	}
 
 	private static class HemocentroFilterSpecification implements Specification<Hemocentro> {
@@ -53,7 +67,7 @@ public class HemocentroList {
 				city = cb.equal(root.get(Hemocentro.FIELD_CITY), listRequest.getCity());
 			}
 
-			return cb.and(name, state, city);
+			return cb.and(name, city, state);
 		}
 
 	}

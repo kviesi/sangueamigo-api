@@ -1,7 +1,5 @@
 package br.com.donation.api.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,9 +16,9 @@ public class DonationController {
 	private RegisterDonationCommand registerDonationCommand;
 
 	@RequestMapping(value = "/v1.0/donation")
-	public ResponseEntity<?> registerDonation(@RequestBody @Valid UserDonationRequest userDonationRequest) {
+	public ResponseEntity<?> registerDonation(@RequestBody UserDonationRequest userDonationRequest) {
 
-		registerDonationCommand.userDonation(userDonationRequest);
+		registerDonationCommand.donation(userDonationRequest);
 		
 		return ResponseEntity.ok().build();
 	}

@@ -7,8 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.context.annotation.Bean;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.springframework.validation.beanvalidation.MethodValidationPostProcessor;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,22 +22,11 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableCircuitBreaker
 @EnableSwagger2
 @EnableAutoConfiguration
+@EnableTransactionManagement
 public class Application {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
-	}
-
-	@Bean
-	MethodValidationPostProcessor methodValidationPostProcessor() {
-		MethodValidationPostProcessor methodValidationPostProcessor = new MethodValidationPostProcessor();
-		methodValidationPostProcessor.setValidator(validator());
-		return methodValidationPostProcessor;
-	}
-
-	@Bean
-	LocalValidatorFactoryBean validator() {
-		return new LocalValidatorFactoryBean();
 	}
 
 	@Bean
@@ -52,14 +40,15 @@ public class Application {
 				.groupName("SangueAmigo")
 				.apiInfo(apiInfo())
 				.select()
-				.paths(regex(".*"))
+				.paths(regex("/v1.0/hemocentro*"))
+				.paths(regex("/v1.0/donation*"))
 				.build();
 	}
 
 	ApiInfo apiInfo() {
 		return new ApiInfoBuilder()
-				.title("Hemocentro API")
-				.description("Hemocentro API")
+				.title("SangueAmigo API")
+				.description("SangueAmigo API")
 				.contact("Kaio Viesi")
 				.version("2.0")
 				.build();

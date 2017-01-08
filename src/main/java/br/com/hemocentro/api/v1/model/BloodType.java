@@ -9,7 +9,7 @@ public enum BloodType {
 	O_P("O Positivo"),
 	O_N("O Negativo");
 
-	private String displayName;
+	private final String displayName;
 
 	private BloodType(String displayName) {
 		this.displayName = displayName;

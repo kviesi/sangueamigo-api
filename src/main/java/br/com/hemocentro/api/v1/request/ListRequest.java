@@ -13,6 +13,10 @@ public class ListRequest {
 	private int actualPage = DEF_ACTUAL_PAGE;
 	private int pageSize = DEF_PAGE_SIZE;
 
+	public boolean isEmptyFilters() {
+		return name == null || city == null || state == null;
+	}
+
 	public String getName() {
 		return name;
 	}

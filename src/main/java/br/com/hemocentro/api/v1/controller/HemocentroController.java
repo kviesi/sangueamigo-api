@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.common.collect.Iterables;
@@ -42,14 +41,14 @@ public class HemocentroController {
 	@RequestMapping(value = "/v1.0/hemocentro", 
 					method = RequestMethod.GET,
 					produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<?> listAll(@RequestParam ListRequest listRequest) {
+	public ResponseEntity<?> listAll(ListRequest listRequest) {
 		
 		Iterable<Hemocentro> hemocentros = hemocentroList.list(listRequest);
 
 		if (Iterables.isEmpty(hemocentros)) {
 			return ResponseEntity.notFound().build();
 		}
-		
+
 		return ResponseEntity.ok(hemocentros);
 	}
 	

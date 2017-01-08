@@ -1,8 +1,9 @@
 package br.com.donation.api.request;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
 import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -17,10 +18,15 @@ public class UserDonationRequest {
 
 	@NotNull
 	@Future
-	private LocalDate donationDate;
+	private Calendar donationDate;
 
-	@NotBlank
-	private String location;
+	@Min(1L)
+	@NotNull
+	private Long hemocentroId;
+
+	@Min(1L)
+	@NotNull
+	private Long campaignId;
 
 	public String getUserId() {
 		return userId;
@@ -30,20 +36,20 @@ public class UserDonationRequest {
 		this.userId = userId;
 	}
 
-	public LocalDate getDonationDate() {
-		return donationDate;
-	}
-
-	public void setDonationDate(LocalDate donationDate) {
+	public void setDonationDate(Calendar donationDate) {
 		this.donationDate = donationDate;
 	}
 
-	public String getLocation() {
-		return location;
+	public Calendar getDonationDate() {
+		return donationDate;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setHemocentroId(Long hemocentroId) {
+		this.hemocentroId = hemocentroId;
+	}
+
+	public Long getHemocentroId() {
+		return hemocentroId;
 	}
 
 }
