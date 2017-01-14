@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.hemocentro.api.v1.model.Hemocentro;
+import br.com.hemocentro.api.model.Hemocentro;
 
 @Entity
 @Table(name = "sa_campanha")

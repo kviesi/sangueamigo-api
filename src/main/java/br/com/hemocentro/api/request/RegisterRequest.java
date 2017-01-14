@@ -1,4 +1,4 @@
-package br.com.hemocentro.api.v1.request;
+package br.com.hemocentro.api.request;
 
 import org.hibernate.validator.constraints.NotBlank;
 

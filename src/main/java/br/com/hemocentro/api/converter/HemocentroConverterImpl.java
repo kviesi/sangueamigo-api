@@ -1,10 +1,10 @@
-package br.com.hemocentro.api.v1.converter;
+package br.com.hemocentro.api.converter;
 
 import org.springframework.stereotype.Component;
 
 import br.com.common.converter.GenericConverter;
-import br.com.hemocentro.api.v1.model.Hemocentro;
-import br.com.hemocentro.api.v1.request.RegisterRequest;
+import br.com.hemocentro.api.model.Hemocentro;
+import br.com.hemocentro.api.request.RegisterRequest;
 
 @Component
 public class HemocentroConverterImpl implements HemocentroConverter {

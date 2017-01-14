@@ -1,9 +1,9 @@
-package br.com.hemocentro.api.v1.converter;
+package br.com.hemocentro.api.converter;
 
 import org.mapstruct.Mapper;
 
-import br.com.hemocentro.api.v1.model.Hemocentro;
-import br.com.hemocentro.api.v1.request.RegisterRequest;
+import br.com.hemocentro.api.model.Hemocentro;
+import br.com.hemocentro.api.request.RegisterRequest;
 
 @Mapper(componentModel = "spring")
 public interface HemocentroConverter {

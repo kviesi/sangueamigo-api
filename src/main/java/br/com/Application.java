@@ -42,6 +42,7 @@ public class Application {
 				.select()
 				.paths(regex("/v1.0/hemocentro*"))
 				.paths(regex("/v1.0/donation*"))
+				.paths(regex("/v1.0/user*"))
 				.build();
 	}
 
