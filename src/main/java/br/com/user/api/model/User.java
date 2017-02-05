@@ -26,6 +26,10 @@ public class User {
 
 	private String password;
 
+	private String homephone;
+
+	private String cellphone;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dateCreated;
 
@@ -58,6 +62,22 @@ public class User {
 
 	public boolean autenticate(String password) {
 		return this.password.equals(password);
+	}
+
+	public String getHomephone() {
+		return homephone;
+	}
+
+	public void setHomephone(String homephone) {
+		this.homephone = homephone;
+	}
+
+	public String getCellphone() {
+		return cellphone;
+	}
+
+	public void setCellphone(String cellphone) {
+		this.cellphone = cellphone;
 	}
 
 	@PrePersist

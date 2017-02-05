@@ -1,7 +1,6 @@
 package br.com.donation.api.model;
 
-import java.security.cert.CertPathValidatorException.Reason;
-import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -24,10 +23,10 @@ public class DonationSolicitation {
 	private Long id;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar date;
+	private Date date;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateLimit;
+	private Date dateLimit;
 
 	@Enumerated(EnumType.STRING)
 	private BloodType bloodType;
@@ -36,7 +35,7 @@ public class DonationSolicitation {
 
 	private String recipientName;
 
-	private Long requesterId;
+	private String requesterId;
 
 	@Enumerated(EnumType.STRING)
 	private RequesterType requesterType;
@@ -48,26 +47,22 @@ public class DonationSolicitation {
 	private Emergency emergency;
 
 	public DonationSolicitation() {
-		this.date = Calendar.getInstance();
+		this.date = new Date();
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public Calendar getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
-		this.date = date;
-	}
-
-	public Calendar getDateLimit() {
+	public Date getDateLimit() {
 		return dateLimit;
 	}
 
-	public void setDateLimit(Calendar dateLimit) {
+	public void setDateLimit(Date dateLimit) {
 		this.dateLimit = dateLimit;
 	}
 
@@ -95,11 +90,11 @@ public class DonationSolicitation {
 		this.recipientName = recipientName;
 	}
 
-	public Long getRequesterId() {
+	public String getRequesterId() {
 		return requesterId;
 	}
 
-	public void setRequesterId(Long requesterId) {
+	public void setRequesterId(String requesterId) {
 		this.requesterId = requesterId;
 	}
 

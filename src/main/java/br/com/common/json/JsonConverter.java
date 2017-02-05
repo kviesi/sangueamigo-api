@@ -17,13 +17,11 @@ public class JsonConverter {
 	}
 
 	public String toJSON(Map<String, Object> content) {
-		String json;
 		try {
-			json = objectMapper.writeValueAsString(content);
+			return objectMapper.writeValueAsString(content);
 		} catch (JsonProcessingException e) {
 			throw new RuntimeException();
 		}
-		return json;
 	}
 
 }
